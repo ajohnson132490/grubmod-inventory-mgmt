@@ -8,5 +8,5 @@ Current account balances\
 Connection with bank?\
 Create client database\
 Create seller database\
-History of all previous purchases and sales\
+History of all previous purchases and sales
 
