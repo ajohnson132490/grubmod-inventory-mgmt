@@ -1,11 +1,37 @@
-from classes import *
+from helpers import *
 
-#Global Variables
+## Global Variables ##
 accountBalance = 0
 salesTotal = 0
 typesOfInventory = ["GBASP", "GBA", "GBC", "N64"]
 inventory = []
 cont = True
+
+## Data Storage ##
+
+#Saving data
+def saveData(inventory, accountBalance, salesTotal):
+    print("Saving...")
+    with open('localData', 'wb') as saveFile:
+        pickle.dump([inventory, accountBalance, salesTotal], saveFile)
+    print("Save Complete")
+
+#Loading data
+def loadData():
+    global accountBalance
+    global salesTotal
+    global inventory
+    print("Loading...")
+    with open('localData', 'rb') as saveFile:
+        inventory, accountBalance, salesTotal = pickle.load(saveFile)
+    print("Load Complete")
+
+#Load data on startup, but if there is no data, create a new save
+try:
+    loadData()
+
+except FileNotFoundError:
+    saveData(inventory, accountBalance, salesTotal)
 
 #Putting in some fake gameboys
 for i in range(10):
@@ -128,6 +154,7 @@ def getAccountBalance(val):
 def endProgram(val):
     global cont
     cont = False
+    saveData(inventory, accountBalance, salesTotal)
 
 menuOptions = {
     "LIST INVENTORY" : listInventory,

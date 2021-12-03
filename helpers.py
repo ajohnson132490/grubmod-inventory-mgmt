@@ -1,4 +1,6 @@
 from itertools import count
+import pickle
+from _pickle import load
 
 class Item:
     _ids = count(0)
