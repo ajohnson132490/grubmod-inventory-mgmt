@@ -1,5 +1,5 @@
 # grubmod-inventory-mgmt
-A graphical inventory management designed for buying, refurbishing, and reselling items 
+A graphical inventory management designed for buying, refurbishing, and reselling items
 
 ### Features to implement
 List of all items in inventory\
@@ -8,5 +8,5 @@ Current account balances\
 Connection with bank?\
 Create client database\
 Create seller database\
-History of all previous purchases and sales
-
+History of all previous purchases and sales\
+Saves data to a local database
