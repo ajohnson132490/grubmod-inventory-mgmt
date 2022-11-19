@@ -1,0 +1,67 @@
+/* General Use */
+body {
+    background-color: peachpuff;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-child {
+    flex: auto;
+    border: 4px solid black;
+}
+
+.flex-child:first-child {
+    margin-right: 20px;
+}
+
+.internal-container
+{
+    flex-direction: column;
+    padding: 1%;
+    text-align: left;
+    background-color: lightcoral;
+    border: 4px solid black;
+}
+
+.internal-sub-container {
+    padding: 1%;
+    margin: 2em;
+    text-align: left;
+    background-color: oldlace;
+    border: 2px solid black;
+}
+
+input {
+    background-color: oldlace;
+}
+
+/* Purchase and Sale Page */
+.inventory-form input, select {
+    margin: 0.5em;
+}
+
+/* Home Page */
+table {
+    border: 4px solid black;
+    padding: 2%;
+    overflow: scroll;
+}
+
+thead {
+    border-bottom: 4px solid black;
+}
+
+th {
+    border: 1px solid black;
+    padding: 0% 5% 0% 5%;
+    width: 15em;
+    text-align: center;
+}
+
+td {
+    border: 1px solid black;
+    text-align: center;
+}

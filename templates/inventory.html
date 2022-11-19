@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Current Inventory
+{% endblock %}
+
+{% block main %}
+<div class="flex-container internal-container">
+    <div style="display:inline;">
+        <form style="float:right; margin-right: 5em;" action="/inventory" method="POST">
+            <select class="form-select mx-auto w-auto" name="sort">
+                <option disabled selected>Sort By</option>
+                <option value="id"><p>Unit Id</p></option>
+                <option value="type"><p>System</p></option>
+                <option value="price"><p>Price</p></option>
+                <option value="condition"><p>Condition</p></option>
+            </select>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="flex-container">
+        <div class="internal-container flex-child" style="height:30em; max-width:50em; background-color: oldlace;">
+            <h3>Current Inventory</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Unit Id</th>
+                        <th>System</th>
+                        <th>Price</th>
+                        <th>Condition</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for unit in merchandise %}
+                        <tr>
+                            <td>{{ unit.id }}</td>
+                            <td>{{ unit.type }}</td>
+                            <td>{{ unit.price | usd }}</td>
+                            <td>{{ unit.condition }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add A Sale
+{% endblock %}
+
+{% block main %}
+    <div class="flex-container">
+    <form class="internal-container inventory-form" style="max-width:20em; text-align:center;" action="/sale" method="POST">
+        <input autocomplete="off" type="number" placeholder="Unit Id" name="unitId">
+        <input autocomplete="off" type="number" placeholder="$ Final Price (after fees)" name="price">
+        <input autocomplete="off" type="text" placeholder="Market" name="market">
+        <br>
+        <br>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

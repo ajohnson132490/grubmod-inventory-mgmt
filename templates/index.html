@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <div id="indexMain" class="flex-container">
+        <div class="internal-container flex-child" style="height:30em; background-color: lightcoral; width: 60%">
+            <h3>Recent Transactions</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time Stamp</th>
+                        <th>Unit Id</th>
+                        <th>Market</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for transaction in recentTransactions %}
+                        <tr>
+                            <td>{{ transaction.time }}</td>
+                            <td>{{ transaction.unitId }}</td>
+                            <td>{{ transaction.market }}</td>
+                            <td>{{ transaction.value | usd }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="internal-container flex-container flex-child">
+            <div class="internal-sub-container flex-child" style="text-align:center;">
+                <h3>Current Cash value</h3>
+                <br>
+                <h4>{{ currentCash[0]['cash'] | usd }}</h4>
+            </div>
+            <div class="internal-sub-container flex-child" style="text-align:center;">
+                <h3>Total Value of Inventory</h3>
+                <br>
+                <h4>{{ totalValue | usd }}</h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}

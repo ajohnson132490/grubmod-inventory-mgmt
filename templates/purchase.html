@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add A Purchase
+{% endblock %}
+
+{% block main %}
+    <div class="flex-container">
+    <form class="internal-container inventory-form" style="max-width:20em; text-align:center;" action="/purchase" method="POST">
+        <input autocomplete="off" type="text" placeholder="System Type" name="type">
+        <input autocomplete="off" type="number" placeholder="$ Price (after tax)" name="price">
+        <input autocomplete="off" type="text" placeholder="Market" name="market">
+        <select class="form-select mx-auto w-auto" name="condition">
+            <option disabled selected>Condition</option>
+            {% for condition in conditions %}
+                <option value="{{ condition }}"><p> {{ condition }} </p></option>
+            {% endfor %}
+        </select>
+        <br>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

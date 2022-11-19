@@ -1,39 +1,40 @@
-from itertools import count
-import pickle
+import os
+import requests
+import urllib.parse
 
-class Item:
-    _ids = count(0)
-    def __init__(self, name, model, buyPrice, buyDate):
-        self.name = name
-        self.model = model
-        self.buyPrice = buyPrice
-        self.buyDate = buyDate
-        self.id = next(self._ids)
+from flask import redirect, render_template, request, session
+from functools import wraps
 
-    def getName(self):
-        return str(self.name)
 
-####              Transaction Class              ####
-#
-#   type: sale or purchase
-#   item: Item object
-#   buyer: name of the purchaser
-#   market: Facebook Marketplace, Reddit, eBay, Other
-#   saleDate: Tuple of when the item was sold
-#   val: final amount recieved from sale
-#
-#####################################################
+def apology(message, code=400):
+    """Render message as an apology to user."""
+    def escape(s):
+        """
+        Escape special characters.
 
-class Transaction:
-    _its = count(0)
-    def __init__(self, type, item, buyer, market, saleDate, val):
-        self.type = type
-        self.item = item
-        self.buyer = buyer
-        self.market = market
-        self.saleDate = saleDate
-        self.val = val
+        https://github.com/jacebrowning/memegen#special-characters
+        """
+        for old, new in [("-", "--"), (" ", "-"), ("_", "__"), ("?", "~q"),
+                         ("%", "~p"), ("#", "~h"), ("/", "~s"), ("\"", "''")]:
+            s = s.replace(old, new)
+        return s
+    return render_template("apology.html", top=code, bottom=escape(message)), code
 
-    def transPrint(self):
-        print(self.item.getName() + " was sold to " + self.buyer + " on " +
-        str(self.saleDate) + " thru " + self.market + " for a total of " + str(self.val))
+
+def login_required(f):
+    """
+    Decorate routes to require login.
+
+    https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+def usd(value):
+    """Format value as USD."""
+    return f"${value:,.2f}"
